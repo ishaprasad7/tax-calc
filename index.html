@@ -5,106 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settlement Calculator</title>
     <style>
-        body {
+        /* General Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f7fa;
+        }
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
+            background-color: #f7f9fc;
         }
+
+        /* Calculator Container */
         .calculator {
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 100%;
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+            color: #333;
         }
         h2 {
             text-align: center;
-            color: #333;
+            color: #4A90E2;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        /* Table Styles */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
             margin-bottom: 20px;
         }
-        .field {
-            margin-bottom: 15px;
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 1em;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .table th {
+            background-color: #f0f4f8;
+            font-weight: 600;
+        }
+        .table td span {
             font-weight: bold;
-            color: #555;
+            color: #4A90E2;
         }
-        input {
-            width: calc(100% - 20px);
+        
+        /* Input Field Styles */
+        input[type="number"] {
+            width: 100%;
             padding: 10px;
             font-size: 1em;
             border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: right;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
         }
-        .result {
-            color: #2d72d9;
-            font-weight: bold;
+        input[type="number"]:focus {
+            border-color: #4A90E2;
         }
+
+        /* Final Result Style */
         .final-result {
-            color: #d9534f;
-            font-size: 1.2em;
-            font-weight: bold;
             text-align: center;
+            color: #D9534F;
+            font-size: 1.4em;
+            font-weight: bold;
             margin-top: 20px;
+            padding: 10px 0;
+            border-radius: 8px;
+            background-color: #fef4f4;
         }
     </style>
 </head>
 <body>
     <div class="calculator">
         <h2>Settlement Calculator</h2>
-        
-        <div class="field">
-            <label for="sellingPrice">Selling Price Ex. GST</label>
-            <input type="number" id="sellingPrice" placeholder="Enter Selling Price Ex. GST" oninput="calculatePayout()">
-        </div>
-        
-        <div class="field">
-            <label for="gstProduct">GST % of Product</label>
-            <input type="number" id="gstProduct" placeholder="Enter GST % of Product" oninput="calculatePayout()">
-        </div>
 
-        <div class="field">
-            <label>GST Amount in INR: <span class="result" id="gstAmount">0</span></label>
-        </div>
-        
-        <div class="field">
-            <label>Selling Price Inc. of GST: <span class="result" id="sellingPriceIncGST">0</span></label>
-        </div>
-        
-        <div class="field">
-            <label>Commission %: <span class="result">22%</span></label>
-        </div>
-        
-        <div class="field">
-            <label>Commission Amount in INR: <span class="result" id="commissionAmount">0</span></label>
-        </div>
-        
-        <div class="field">
-            <label>GST % on Commission: <span class="result">18%</span></label>
-        </div>
-        
-        <div class="field">
-            <label>GST on Commission in INR: <span class="result" id="gstOnCommission">0</span></label>
-        </div>
-        
-        <div class="field">
-            <label>Seller Payout in Bank: <span class="result" id="sellerPayoutInBank">0</span></label>
-        </div>
-        
-        <div class="field">
-            <label>GST Input Amount: <span class="result" id="gstInputAmount">0</span></label>
-        </div>
+        <table class="table">
+            <!-- Editable Fields -->
+            <tr>
+                <th>Selling Price Ex. GST</th>
+                <td><input type="number" id="sellingPrice" placeholder="Enter amount" oninput="calculatePayout()"></td>
+            </tr>
+            <tr>
+                <th>GST % of Product</th>
+                <td><input type="number" id="gstProduct" placeholder="Enter GST percentage" oninput="calculatePayout()"></td>
+            </tr>
 
+            <!-- Calculation Results -->
+            <tr>
+                <th>GST Amount in INR</th>
+                <td><span id="gstAmount">0.00</span></td>
+            </tr>
+            <tr>
+                <th>Selling Price Inc. of GST</th>
+                <td><span id="sellingPriceIncGST">0.00</span></td>
+            </tr>
+            <tr>
+                <th>Commission %</th>
+                <td><span>22%</span></td>
+            </tr>
+            <tr>
+                <th>Commission Amount in INR</th>
+                <td><span id="commissionAmount">0.00</span></td>
+            </tr>
+            <tr>
+                <th>GST % on Commission</th>
+                <td><span>18%</span></td>
+            </tr>
+            <tr>
+                <th>GST on Commission in INR</th>
+                <td><span id="gstOnCommission">0.00</span></td>
+            </tr>
+            <tr>
+                <th>Seller Payout in Bank</th>
+                <td><span id="sellerPayoutInBank">0.00</span></td>
+            </tr>
+            <tr>
+                <th>GST Input Amount</th>
+                <td><span id="gstInputAmount">0.00</span></td>
+            </tr>
+        </table>
+
+        <!-- Final Total Seller Payout -->
         <div class="final-result">
-            Total Seller Payout: <span id="totalSellerPayout">0</span>
+            Total Seller Payout: <span id="totalSellerPayout">0.00</span>
         </div>
     </div>
 
@@ -136,4 +170,5 @@
     </script>
 </body>
 </html>
+
 
