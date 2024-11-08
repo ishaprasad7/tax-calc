@@ -1,0 +1,80 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    padding: 10px;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: #ffffff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Logo Styling */
+.powered-by {
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.powered-by img {
+    width: 110px;
+    vertical-align: middle;
+}
+
+/* Table Styles */
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 1em;
+}
+
+.table th {
+    background-color: #f0f4f8;
+    font-weight: bold;
+}
+
+.table .section-header {
+    background-color: #4A90E2;
+    color: #fff;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* Calculated Fields */
+.calculated {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Final Result Style */
+.final-result {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px 0;
+    border-radius: 8px;
+    background-color: #eaf8e9;
+}

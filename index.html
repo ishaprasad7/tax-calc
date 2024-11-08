@@ -1,427 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settlement Calculator</title>
-    <style>
-        /* General Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f7f9fc;
-            padding: 10px;
-        }
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
-        /* Calculator Container */
-        .calculator {
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
-            color: #333;
-            position: relative;
-        }
-        h2 {
-            text-align: center;
-            color: #4A90E2;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* Logo Styling */
-        .powered-by {
-            font-size: 0.9em;
-            color: #666;
-            text-align: right;
-            font-style: italic;
-            margin-top: -10px;
-            margin-bottom: 20px;
-        }
-        .powered-by img {
-            width: 110px;
-            vertical-align: middle;
-        }
-
-        /* Table Styles */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        .table th, .table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eaeaea;
-            font-size: 1em;
-        }
-        .table th {
-            background-color: #f0f4f8;
-            font-weight: 600;
-        }
-        .table td span {
-            font-weight: bold;
-            color: #4A90E2;
-        }
-
-        /* Input Field Styles */
-        input[type="number"], select {
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        input[type="number"]:focus, select:focus {
-            border-color: #4A90E2;
-        }
-
-        /* Final Result Style */
-        .final-result {
-            text-align: center;
-            color: #28a745; /* Green color for final result */
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-top: 20px;
-            padding: 10px 0;
-            border-radius: 8px;
-            background-color: #eaf8e9;
-        }
-
-        /* Bulk Upload Section */
-        .bulk-upload {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .bulk-upload h3 {
-            color: #4A90E2;
-            font-weight: bold;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .download-template {
-            display: inline-block;
-            margin-bottom: 15px;
-            color: #fff;
-            background-color: #4A90E2;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-
-        .download-template:hover {
-            background-color: #357ABD;
-        }
-
-        input[type="file"] {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px;
-            font-size: 1em;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            transition: border-color 0.2s;
-        }
-
-        .upload-button {
-            display: inline-block;
-            background-color: #4A90E2;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .upload-button:hover {
-            background-color: #357ABD;
-        }
-
-        .download-button {
-            background-color: #28a745;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            width: 100%;
-            font-size: 1.2em;
-        }
-        .download-button:hover {
-            background-color: #149432;
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 600px) {
-            .calculator {
-                padding: 15px;
-            }
-            .table th, .table td {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-            h2 {
-                font-size: 1.6em;
-            }
-            .final-result {
-                font-size: 1.2em;
-            }
-            .powered-by img {
-                width: 60px;
-            }
-        }
-    </style>
+    <!-- Link to Custom CSS -->
+    <link href="styles.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="calculator">
-        <h2>MB Settlement Calculator</h2>
-        
-        <!-- Powered by Logo -->
-        <div class="powered-by">Powered by <img src="https://d3ka6l1e5o2tqs.cloudfront.net/media/public/default_images/Mb_logo.png" alt="Medikabazaar Logo"></div>
+    <div class="container mt-3">
+        <div class="calculator p-4 shadow-lg rounded">
+            <h2 class="text-center text-primary">Settlement Calculator</h2>
 
-        <table class="table">
-            <!-- Model Type Field -->
-            <tr>
-                <th style="text-align: center;">Model Type</th>
-                <td>
-                    <select id="modelType" onchange="calculatePayout()">
-                        <option value="O">Order only Model (O)</option>
-                        <option value="O + F">Order + Fulfillment Model (O + F)</option>
-                    </select>
-                </td>
-            </tr>
+            <!-- Powered by Logo -->
+            <div class="powered-by text-end">
+                Powered by <img src="https://d3ka6l1e5o2tqs.cloudfront.net/media/public/default_images/Mb_logo.png"
+                    alt="Medikabazaar Logo" class="img-fluid">
+            </div>
 
-            <!-- Editable Fields -->
-            <tr>
-                <th>Selling Price Ex. GST</th>
-                <td><input type="number" id="sellingPrice" placeholder="Enter amount" oninput="calculatePayout()"></td>
-            </tr>
-            <tr>
-                <th>GST % of Product</th>
-                <td><input type="number" id="gstProduct" placeholder="Enter GST percentage" oninput="calculatePayout()"></td>
-            </tr>
+            <!-- Customer Section -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="bg-primary text-white text-center">Customer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="width: 50%;">Selling Price Ex. GST</th>
+                        <td><input type="number" id="sellingPrice" class="form-control" placeholder="Enter amount"
+                                oninput="calculatePayout()"></td>
+                    </tr>
+                    <tr>
+                        <th>GST % of Product</th>
+                        <td><input type="number" id="gstProduct" class="form-control" placeholder="Enter GST percentage"
+                                oninput="calculatePayout()"></td>
+                    </tr>
+                    <tr>
+                        <th>GST Amount in INR</th>
+                        <td><span id="gstAmount" class="calculated">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>Selling Price Inc. of GST</th>
+                        <td><span id="sellingPriceIncGST" class="calculated">0.00</span></td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <!-- Calculation Results -->
-            <tr>
-                <th>GST Amount in INR</th>
-                <td><span id="gstAmount">0.00</span></td>
-            </tr>
-            <tr>
-                <th>Selling Price Inc. of GST</th>
-                <td><span id="sellingPriceIncGST">0.00</span></td>
-            </tr>
-            <tr>
-                <th>Commission %</th>
-                <td><span id="commissionPercent">22%</span></td>
-            </tr>
-            <tr>
-                <th>Commission Amount in INR</th>
-                <td><span id="commissionAmount">0.00</span></td>
-            </tr>
-            <tr>
-                <th>GST % on Commission</th>
-                <td><span>18%</span></td>
-            </tr>
-            <tr>
-                <th>GST on Commission in INR</th>
-                <td><span id="gstOnCommission">0.00</span></td>
-            </tr>
-            <tr>
-                <th>Seller Payout in Bank</th>
-                <td><span id="sellerPayoutInBank">0.00</span></td>
-            </tr>
-            <tr>
-                <th>GST Input Amount</th>
-                <td><span id="gstInputAmount">0.00</span></td>
-            </tr>
-        </table>
+            <!-- Seller Section -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="bg-primary text-white text-center">Seller</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th style="width: 50%;">Commission %</th>
+                        <td><input type="number" id="commissionPercent" class="form-control"
+                                placeholder="Enter commission percentage" oninput="calculatePayout()"></td>
+                    </tr>
+                    <tr>
+                        <th>Commission Amount in INR</th>
+                        <td><span id="commissionAmount" class="calculated">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>GST % on Commission</th>
+                        <td><span>18%</span></td>
+                    </tr>
+                    <tr>
+                        <th>GST on Commission in INR</th>
+                        <td><span id="gstOnCommission" class="calculated">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>Seller Payout in Bank</th>
+                        <td><span id="sellerPayoutInBank" class="calculated">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <th>GST Input Amount</th>
+                        <td><span id="gstInputAmount" class="calculated">0.00</span></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <!-- Total Seller Payout -->
-        <div class="final-result">Total Seller Payout: <span id="totalSellerPayout">0.00</span></div>
 
-        <!-- Bulk Upload Section -->
-        <!-- <div class="bulk-upload">
-            <h3>Bulk Upload</h3>
-            <a class="download-template" href="#">Download Template</a>
-            <input type="file" id="fileUpload">
-            <button class="upload-button" onclick="uploadAndProcessFile()">Upload</button>
-        </div> -->
-
-         <!-- Bulk Upload Section -->
-         <div class="bulk-upload">
-            <h3>Bulk Upload</h3>
-            <p><a href="template_download_link.xlsx" download class="download-template">Download Sample Template</a></p>
-            <input type="file" id="fileUpload" accept=".xlsx">
-            <button class="upload-button" onclick="uploadAndProcessFile()">Upload and Process</button>
-        </div>
-        <div class="bulk-upload">
+            <!-- Total Seller Payout -->
             
+            <div class="alert alert-success" role="alert">
+                <h3 class="mb-0">Total Seller Payout: <span id="totalSellerPayout">0.00</span></h3>
+              </div>
+
+            <!-- Bulk Upload Section -->
+            <div class="card mt-3">
+                <div class="card-header h4">
+                    Bulk Upload
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col"><a href="#" class="btn btn-link" download="template.xlsx"
+                                onclick="downloadTemplate()">Download
+                                Sample Template</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group">
+                                <input type="file" id="fileUpload" class="form-control" accept=".xlsx">
+                                <button class="btn btn-primary" for="fileUpload" onclick="uploadAndProcessFile()">Upload and
+                                    Process</button>
             
-            <button class="download-button" onclick="downloadResults()">Download Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-success" onclick="downloadResults()">Download Results</button>
+                </div>
+            </div>
+            <!-- <div class="bulk-upload mt-4 text-center">
+
+
+                
+            </div>
+
+            <div class="bulk-upload mt-3 text-center">
+               
+            </div> -->
         </div>
     </div>
+
+    <!-- Link to Bootstrap JS -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB4dBT5jPH+5eG+DhXzRx26w4xA2XzTGfXcaN8xkBZZfF5nK" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0LlJt7/1r51r/smPt6CHFSKTK09g6TE5bD+BhQ6k00+k2nFc" crossorigin="anonymous"></script> -->
+    <!-- Link to Custom JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-    
-    
-    <script>
-        function calculatePayout() {
-            const sellingPrice = parseFloat(document.getElementById("sellingPrice").value) || 0;
-            const gstProduct = parseFloat(document.getElementById("gstProduct").value) || 0;
-            const modelType = document.getElementById("modelType").value;
-
-            // GST Amount
-            const gstAmount = (sellingPrice * gstProduct) / 100;
-            document.getElementById("gstAmount").innerText = gstAmount.toFixed(2);
-
-            // Selling Price Including GST
-            const sellingPriceIncGST = sellingPrice + gstAmount;
-            document.getElementById("sellingPriceIncGST").innerText = sellingPriceIncGST.toFixed(2);
-
-            // Update Commission Percentage
-            const commissionPercent = modelType === "O + F" ? 22 : 15;
-            document.getElementById("commissionPercent").innerText = commissionPercent + "%";
-
-            // Calculate Commission Amount
-            const commissionAmount = (sellingPriceIncGST * commissionPercent) / 100;
-            document.getElementById("commissionAmount").innerText = commissionAmount.toFixed(2);
-
-            // GST on Commission
-            const gstOnCommission = (commissionAmount * 18) / 100;
-            document.getElementById("gstOnCommission").innerText = gstOnCommission.toFixed(2);
-
-            // Seller Payout in Bank
-            const sellerPayoutInBank = sellingPriceIncGST - commissionAmount - gstOnCommission;
-            document.getElementById("sellerPayoutInBank").innerText = sellerPayoutInBank.toFixed(2);
-
-            // GST Input Amount
-            const gstInputAmount = commissionAmount * ((18 - gstProduct) / 100);
-            document.getElementById("gstInputAmount").innerText = gstInputAmount.toFixed(2);
-
-            // Total Seller Payout
-            const totalSellerPayout = sellerPayoutInBank + gstInputAmount;
-            document.getElementById("totalSellerPayout").innerText = totalSellerPayout.toFixed(2);
-        }
-
-        function uploadAndProcessFile() {
-            const fileInput = document.getElementById("fileUpload");
-            const file = fileInput.files[0];
-            if (file) {
-                // Add your file processing logic here
-                alert("File uploaded: " + file.name);
-            } else {
-                alert("Please select a file to upload.");
-            }
-        }
-    </script>
-    <script>
-        let processedResults = []; // Array to hold the processed results
-    
-        function uploadAndProcessFile() {
-            const fileInput = document.getElementById("fileUpload");
-            const file = fileInput.files[0];
-    
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-    
-                    // Assuming the data is in the first sheet
-                    const firstSheetName = workbook.SheetNames[0];
-                    const worksheet = workbook.Sheets[firstSheetName];
-    
-                    // Parse the worksheet into JSON (modify according to your Excel structure)
-                    const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    
-                    // Clear previous results
-                    processedResults = [];
-    
-                    // Process each row in jsonData (assuming the first row is headers)
-                    jsonData.slice(1).forEach(row => {
-                        const sellingPrice = parseFloat(row[0]) || 0; // Adjust indices based on your Excel structure
-                        const gstProduct = parseFloat(row[1]) || 0; // Adjust indices based on your Excel structure
-                        const modelType = row[2]; // Assuming model type is in the third column
-    
-                        // Perform calculations as per your existing logic
-                        const gstAmount = (sellingPrice * gstProduct) / 100;
-                        const sellingPriceIncGST = sellingPrice + gstAmount;
-                        const commissionPercent = modelType === "O + F" ? 22 : 15;
-                        const commissionAmount = (sellingPriceIncGST * commissionPercent) / 100;
-                        const gstOnCommission = (commissionAmount * 18) / 100;
-                        const sellerPayoutInBank = sellingPriceIncGST - commissionAmount - gstOnCommission;
-                        const gstInputAmount = commissionAmount * ((18 - gstProduct) / 100);
-                        const totalSellerPayout = sellerPayoutInBank + gstInputAmount;
-    
-                        // Store results in processedResults array
-                        processedResults.push([
-                            sellingPrice,
-                            gstProduct,
-                            gstAmount,
-                            sellingPriceIncGST,
-                            commissionPercent,
-                            commissionAmount,
-                            gstOnCommission,
-                            sellerPayoutInBank,
-                            gstInputAmount,
-                            totalSellerPayout
-                        ]);
-                    });
-                    alert("File processed successfully.");
-                };
-    
-                reader.readAsArrayBuffer(file);
-            } else {
-                alert("Please select a file to upload.");
-            }
-        }
-    
-        function downloadResults() {
-            if (processedResults.length === 0) {
-                alert("No results to download. Please upload and process a file first.");
-                return;
-            }
-    
-            // Create a new workbook and add a worksheet
-            const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet([["Selling Price", "GST %", "GST Amount", "Selling Price Inc. GST", "Commission %", "Commission Amount", "GST on Commission", "Seller Payout in Bank", "GST Input Amount", "Total Seller Payout"]]);
-    
-            // Append processed results to the worksheet
-            processedResults.forEach(result => {
-                XLSX.utils.sheet_add_aoa(ws, [result], { origin: -1 }); // Append to the end
-            });
-    
-            // Append worksheet to workbook
-            XLSX.utils.book_append_sheet(wb, ws, "Results");
-    
-            // Create a download link and trigger the download
-            XLSX.writeFile(wb, "settlement_results.xlsx");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
