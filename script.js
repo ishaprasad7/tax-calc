@@ -20,10 +20,10 @@ function calculatePayout() {
     const sellerPayoutInBank = sellingPriceIncGST - commissionAmount - gstOnCommission;
     document.getElementById("sellerPayoutInBank").innerText = sellerPayoutInBank.toFixed(2);
 
-    const gstInputAmount = (sellingPriceIncGST * 18) / 100;
+    const gstInputAmount = commissionAmount * ((18 - gstProduct) / 100);
     document.getElementById("gstInputAmount").innerText = gstInputAmount.toFixed(2);
 
-    const totalSellerPayout = sellerPayoutInBank - gstInputAmount;
+    const totalSellerPayout = sellerPayoutInBank + gstInputAmount;
     document.getElementById("totalSellerPayout").innerText = totalSellerPayout.toFixed(2);
 }
 
