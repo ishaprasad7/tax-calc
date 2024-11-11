@@ -16,7 +16,7 @@
 <body>
     <div class="container mt-3">
         <div class="calculator p-4 shadow-lg rounded">
-            <h2 class="text-center text-primary">Settlement Calculator</h2>
+            <h2 class="text-center">Settlement Calculator</h2>
 
             <!-- Powered by Logo -->
             <div class="powered-by text-end">
@@ -28,7 +28,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="2" class="bg-primary text-white text-center">Customer</th>
+                        <th colspan="2" class="text-white text-center section-header">Customer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +57,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th colspan="2" class="bg-primary text-white text-center">Seller</th>
+                        <th colspan="2" class="text-white text-center section-header">Seller</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,7 @@
                     </tr>
                     <tr>
                         <th>GST % on Commission</th>
-                        <td><span>18%</span></td>
+                        <td><strong>18%</strong></td>
                     </tr>
                     <tr>
                         <th>GST on Commission in INR</th>
@@ -91,19 +91,20 @@
 
 
             <!-- Total Seller Payout -->
-            
-            <div class="alert alert-success" role="alert">
+            <!-- Total Seller Payout -->
+            <div class="final-result">Total Seller Payout: <span id="totalSellerPayout">0.00</span></div>
+            <!-- <div class="alert alert-success" role="alert">
                 <h3 class="mb-0">Total Seller Payout: <span id="totalSellerPayout">0.00</span></h3>
-              </div>
+            </div> -->
 
             <!-- Bulk Upload Section -->
             <div class="card mt-3">
-                <div class="card-header h4">
+                <div class="card-header h5">
                     Bulk Upload
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col"><a href="" class="btn btn-link"
+                        <div class="col text-center"><a href="" class="btn download-template"
                                 onclick="downloadTemplate()">Download
                                 Sample Template</a></div>
                     </div>
@@ -111,18 +112,22 @@
                         <div class="col">
                             <div class="input-group">
                                 <input type="file" id="fileUpload" class="form-control" accept=".xlsx">
-                                <button class="btn btn-primary" for="fileUpload" onclick="uploadAndProcessFile()">Upload and
-                                    Process</button>
-            
+                                <button class="btn upload-button" for="fileUpload"
+                                    onclick="uploadAndProcessFile()">
+                                    <span class="d-none d-md-inline"> Upload and Process</span>
+                                    <span class="d-md-none">Upload</span>
+                                   </button>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-success" onclick="downloadResults()">Download Results</button>
+                    <button class="btn btn-block 
+                    download-button" onclick="downloadResults()">Download Results</button>
                 </div>
             </div>
-            
+
         </div>
     </div>
 

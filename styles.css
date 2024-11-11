@@ -26,6 +26,7 @@ h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
     font-weight: bold;
+    color: #385b83;
 }
 
 /* Logo Styling */
@@ -57,7 +58,7 @@ h2 {
 }
 
 .table .section-header {
-    background-color: #4A90E2;
+    background-color: #385b83;
     color: #fff;
     text-align: center;
     font-size: 1.2em;
@@ -65,16 +66,57 @@ h2 {
 
 /* Calculated Fields */
 .calculated {
-    color: #007bff;
+    color: #385299;
     font-weight: bold;
 }
 
 /* Final Result Style */
 .final-result {
+    text-align: center;
+    color: #28a745;
     font-size: 1.4em;
     font-weight: bold;
     margin-top: 20px;
     padding: 10px 0;
     border-radius: 8px;
-    background-color: #eaf8e9;
+    background-color: #e9ffcd;
+}
+.download-template {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #fff;
+    background-color: #385b83;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.download-template:hover {
+    background-color: #1a395d;
+    color: #fff;
+}
+.upload-button {
+    background-color: #385b83;
+    color: #fff;
+    /* padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer; */
+}
+.upload-button:hover {
+    background-color: #1b385a;
+    color: #fff;
+}
+
+.download-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    
+    width: 100%;
+}
+.download-button:hover{
+    background-color: #16812f;
+    color: #fff;
 }
